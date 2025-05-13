@@ -1,0 +1,60 @@
+<p>admin-dashboard works!</p>
+<h2>👨‍💼 Admin Panel</h2>
+<button (click)="logout()">Çıkış Yap</button>
+
+<h3>👨‍🎓 Öğrenciler</h3>
+<ul *ngIf="students.length > 0; else noStudents">
+  <!-- Öğrenci -->
+  <li *ngFor="let s of students">
+    <div *ngIf="editStudent?.id !== s.id">
+      {{ s.id }} - {{ s.name }} {{ s.surname }}
+      <button (click)="editStudent = s">✏️</button>
+      <button (click)="deleteStudent(s.id)">🗑</button>
+    </div>
+    <div *ngIf="editStudent?.id === s.id">
+      <input [(ngModel)]="editStudent.name" />
+      <input [(ngModel)]="editStudent.surname" />
+      <button (click)="saveStudent(editStudent)">💾</button>
+      <button (click)="editStudent = null">❌</button>
+    </div>
+  </li>
+</ul>
+<ng-template #noStudents>
+  <p>Öğrenci yok</p>
+</ng-template>
+
+<hr />
+
+<h3>👩‍🏫 Öğretmenler</h3>
+<ul *ngIf="teachers.length > 0; else noTeachers">
+  <!-- Öğretmen -->
+  <li *ngFor="let t of teachers">
+    <div *ngIf="editTeacher?.id !== t.id">
+      {{ t.id }} - {{ t.name }} {{ t.surname }} ({{ t.department }})
+      <button (click)="editTeacher = t">✏️</button>
+      <button (click)="deleteTeacher(t.id)">🗑</button>
+    </div>
+    <div *ngIf="editTeacher?.id === t.id">
+      <input [(ngModel)]="editTeacher.name" />
+      <input [(ngModel)]="editTeacher.surname" />
+      <input [(ngModel)]="editTeacher.department" />
+      <button (click)="saveTeacher(editTeacher)">💾</button>
+      <button (click)="editTeacher = null">❌</button>
+    </div>
+  </li>
+</ul>
+<ng-template #noTeachers>
+  <p>Öğretmen yok</p>
+</ng-template>
+
+
+<h3>📚 Ders Ekle</h3>
+<input [(ngModel)]="newCourse.title" placeholder="Ders adı" />
+<input [(ngModel)]="newCourse.courseCode" placeholder="Kod" />
+<input type="number" [(ngModel)]="newCourse.teacherId" placeholder="Teacher ID" />
+<button (click)="addCourse()">➕ Ekle</button>
+
+<h3>📊 İstatistikler</h3>
+<p>👨‍🎓 Öğrenci Sayısı: {{ studentCount }}</p>
+<p>👩‍🏫 Öğretmen Sayısı: {{ teacherCount }}</p>
+<p>📚 Ders Sayısı: {{ courseCount }}</p>

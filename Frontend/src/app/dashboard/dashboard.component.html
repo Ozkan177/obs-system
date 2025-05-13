@@ -1,0 +1,23 @@
+<h2>Dersler</h2>
+<button (click)="logout()">Çıkış Yap</button>
+
+<ul *ngIf="studentCourses.length > 0; else noStudentCourses">
+  <li *ngFor="let course of studentCourses">
+    {{ course.title }} ({{ course.courseCode }})
+  </li>
+</ul>
+<ng-template #noStudentCourses>
+  <p>Hiç ders almıyorsunuz.</p>
+</ng-template>
+
+<hr />
+
+<h2> Tüm Dersler</h2>
+<ul *ngIf="allCourses.length > 0; else noCourses">
+  <li *ngFor="let course of allCourses">
+    {{ course.title }} ({{ course.courseCode }})
+  </li>
+</ul>
+<ng-template #noCourses>
+  <p>Henüz hiç ders eklenmemiş.</p>
+</ng-template>

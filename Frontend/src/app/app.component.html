@@ -1,0 +1,5 @@
+<div *ngIf="user">
+  <p>Hoş geldin, {{ user.name }}!</p>
+  <button (click)="logout()">Çıkış Yap</button>
+</div>
+<router-outlet></router-outlet>

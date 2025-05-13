@@ -1,0 +1,28 @@
+<h2>Giriş Yap</h2>
+
+<label>Rol Seç:</label>
+<select [(ngModel)]="selectedRole">
+  <option value="student">Öğrenci</option>
+  <option value="teacher">Öğretmen</option>
+  <option value="admin">Admin</option>
+</select>
+
+<!-- Öğrenci ve Öğretmen -->
+<div *ngIf="selectedRole === 'student' || selectedRole === 'teacher'">
+  <label>ID:</label>
+  <input type="number" [(ngModel)]="id" />
+  <label>Şifre:</label>
+  <input type="password" [(ngModel)]="password" />
+</div>
+
+<!-- Admin için ayrı giriş -->
+<div *ngIf="selectedRole === 'admin'">
+  <label>Kullanıcı Adı:</label>
+  <input type="text" [(ngModel)]="username" />
+  <label>Şifre:</label>
+  <input type="password" [(ngModel)]="password" />
+</div>
+
+<button (click)="login()">Giriş Yap</button>
+
+<p>Hesabınız yok mu? <a routerLink="/register">Kayıt Ol</a></p>

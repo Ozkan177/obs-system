@@ -1,0 +1,26 @@
+<p>teacher-dashboard works!</p>
+<h2>⏳ Onay Bekleyen Ders Talepleri</h2>
+<button (click)="logout()">Çıkış Yap</button>
+
+<ul *ngIf="pendingRequests.length > 0; else noPending">
+  <li *ngFor="let req of pendingRequests">
+  {{ req.student.name }} - {{ req.course.title }}
+  <button (click)="approveRequest(req.id)">✅ Onayla</button>
+</li>
+
+</ul>
+<ng-template #noPending>
+  <p>Bekleyen istek yok.</p>
+</ng-template>
+
+<hr />
+
+<h2>📚 Derslerime Giren Öğrenciler</h2>
+<ul *ngIf="approvedRequests.length > 0; else noApproved">
+  <li *ngFor="let approved of approvedRequests">
+    {{ approved.student.name }} → {{ approved.course.title }}
+  </li>
+</ul>
+<ng-template #noApproved>
+  <p>Henüz onaylanmış öğrenci yok.</p>
+</ng-template>

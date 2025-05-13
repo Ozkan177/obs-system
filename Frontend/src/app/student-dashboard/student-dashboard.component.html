@@ -1,0 +1,28 @@
+<p>student-dashboard works!</p>
+<h2>📘 Tüm Dersler</h2>
+<button (click)="logout()">Çıkış Yap</button>
+
+<ul>
+  <li *ngFor="let course of allCourses">
+    {{ course.title }} - {{ course.courseCode }}
+<button (click)="requestCourse(course.id)" [disabled]="isRequested(course)">➕</button>
+  </li>
+</ul>
+
+<hr>
+
+<h2>⏳ Onay Bekleyenler</h2>
+<ul>
+  <li *ngFor="let course of pendingCourses">
+    {{ course.title }} - {{ course.courseCode }}
+  </li>
+</ul>
+
+<hr>
+
+<h2>✅ Onaylanmış Dersler</h2>
+<ul>
+  <li *ngFor="let course of approvedCourses">
+    {{ course.title }} - {{ course.courseCode }}
+  </li>
+</ul>
